@@ -1,0 +1,122 @@
+body {
+    background-color: lightsteelblue;
+    margin: 50px;
+    padding: 10px;
+    font-family: "Montserrat", sans-serif;
+  }
+  section {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 16px;
+    background-color: #fff;
+    box-shadow: 2px 2px 1px rgb(0 0 0 / 50%);
+  }
+  .navbar {
+    padding-left: 0px;
+  }
+  nav .container {
+    display: flex;
+    width: 90%;
+  }
+  .container {
+    padding: 0px;
+  }
+  #search-bar {
+    border-radius: 8px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .form-search {
+    border: none;
+    box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+    border-radius: 8px;
+    width: 100%;
+    padding-left: 8px;
+    margin-right: 10px;
+    font-family: "Montserrat", sans-serif;
+  }
+  .form-search::placeholder {
+    font-family: "Montserrat", sans-serif;
+  }
+  .btn {
+    margin-right: 10px;
+  }
+  button {
+    font-family: "Montserrat", sans-serif;
+    cursor: pointer;
+    background-color: grey;
+    color: rgb(234, 243, 255);
+    border-radius: 8px;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+  }
+  #current {
+    background-color: steelblue;
+  }
+  button:hover {
+    color: black;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1rem;
+    color: gray;
+  }
+  h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0px;
+    padding-bottom: 10px;
+  }
+  h4 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0px;
+    padding-bottom: 10px;
+  }
+  #description {
+    text-transform: capitalize;
+  }
+  .temperature {
+    display: inline-flex;
+  }
+  .formula {
+    padding: 0px 8px;
+  }
+  .formula a {
+    text-decoration: none;
+  }
+  a:hover {
+    color: gold;
+  }
+  .active {
+    font-weight: 700;
+  }
+  .row {
+    display: grid;
+    font-size: 1rem;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 10px;
+    row-gap: 1em;
+  }
+  #days {
+    font-weight: bolder;
+  }
+  .col {
+    text-align: center;
+  }
+  .align-items-start {
+    font-size: 18px;
+    font-weight: bolder;
+  }
+  .align-items-center {
+    font-size: 24px;
+  }
+  .align-items-end {
+    font-size: 14px;
+    font-weight: lighter;
+  }
+  
