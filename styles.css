@@ -6,7 +6,7 @@ body {
   }
   section {
     max-width: 600px;
-    margin: 50px auto;
+    margin: 10px auto;
     padding: 40px;
     border-radius: 16px;
     background-color: #fff;
@@ -90,7 +90,7 @@ body {
     text-decoration: none;
   }
   a:hover {
-    color: gold;
+    color: gray;
   }
   .active {
     font-weight: 700;
@@ -118,5 +118,14 @@ body {
   .align-items-end {
     font-size: 14px;
     font-weight: lighter;
+  }
+  footer {
+    max-width: 600px;
+    margin: 0px auto;
+    text-align: center;
+  }
+  footer a {
+    text-decoration: none;
+    color: steelblue;
   }
   
