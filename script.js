@@ -46,6 +46,7 @@ let days = [
   let h2 = document.querySelector("h2");
   h2.innerHTML = `${theDate}`;
   
+
   //Search Temp
   function getTemp(response) {
     let selectedCity = document.querySelector("#city-input");
@@ -61,6 +62,24 @@ let days = [
     //sky description
     let description = document.querySelector("#description");
     description.innerHTML = response.data.weather[0].description;
+    let weatherIcon = document.querySelector("#icon");
+    
+    if (response.data.weather[0].description.includes("clouds") === true) {
+      weatherIcon.innerHTML = "⛅️";
+    } else if (response.data.weather[0].description.includes("rain") === true) {
+        weatherIcon.innerHTML ="🌧";
+      } else if (response.data.weather[0].description.includes("thunderstorm") === true) {
+        weatherIcon.innerHTML ="⛈";
+      } else if (response.data.weather[0].description.includes("drizzle") === true) {
+        weatherIcon.innerHTML ="🌦";
+      } else if (response.data.weather[0].description.includes("snow") === true) {
+        weatherIcon.innerHTML ="❄️";
+      } else if (response.data.weather[0].description.includes("haze" || "smoke") === true) {
+        weatherIcon.innerHTML ="🌫";
+      } else {
+        weatherIcon.innerHTML ="☀️";
+      }
+    
     //humidity
     let humidity = document.querySelector("#humidity");
     humidity.innerHTML = response.data.main.humidity;
@@ -135,3 +154,16 @@ let days = [
   
   fahrenheitLink.addEventListener("click", changeToF);
   
+
+    //weather icons
+/*   let weatherIcon = [
+    "☀️",
+    "🌤",
+    "⛅️",
+    "☁️",
+    "🌧",
+    "🌦",
+    "⛈"
+    "❄️"
+    "🌫"
+  ]; */
