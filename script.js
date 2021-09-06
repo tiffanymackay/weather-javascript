@@ -46,16 +46,15 @@ let days = [
   let h2 = document.querySelector("h2");
   h2.innerHTML = `${theDate}`;
 
-  //forecast
-
-  function displayForecast() {
+  //forecast 
+  function displayForecast(response) {
+    console.log(response.data.daily);
     let forecastElement = document.querySelector("#forecast");
 
-    let forecastHTML = `<div id="days" class="row">`;
-
-
+    let forecastHTML = `<div class="row">`;
 
     let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+
     days.forEach(function (day) {
       forecastHTML = forecastHTML + 
       `<div class="day">
@@ -75,8 +74,14 @@ let days = [
       forecastElement.innerHTML = forecastHTML;
 
   }
+
+  function getForecast(coordinates) {
+    let apiKey = "dc249be89a0015c3980887c32be65599";
+    let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=imperial&appid=${apiKey}`;
+    axios.get(apiURL).then(displayForecast);
+  }
   
-  //global temp
+  //global variables
   let fahrenheitLink = document.querySelector("#fahrenheit");
   let celsiusLink = document.querySelector("#celsius");
 
@@ -93,8 +98,6 @@ let days = [
     let currentTemp = Math.round(response.data.main.temp);
     let newDegreeTemp = document.querySelector("#degrees");
     newDegreeTemp.innerHTML = `${currentTemp}`;
-
-
 
     celsiusTemperature = response.data.main.temp;
     fahrenheitTemperature = response.data.main.temp;
@@ -132,6 +135,8 @@ let days = [
     //humidity
     let humidity = document.querySelector("#humidity");
     humidity.innerHTML = response.data.main.humidity;
+
+    getForecast(response.data.coord);
   }
   axios
     .get(
@@ -199,4 +204,3 @@ let days = [
   }
   
   fahrenheitLink.addEventListener("click", changeToF);   
-   displayForecast();
