@@ -58,10 +58,9 @@ let days = [
 
   //forecast 
   function displayForecast(response) {
-    console.log(response.data.daily);
+
     let forecast = response.data.daily;
     let forecastElement = document.querySelector("#forecast");
-
 
     let forecastHTML = `<div class="row">`;
 
@@ -80,10 +79,16 @@ let days = [
             </div>
         </div>
       `;
+
+      celsiusForecastMax = forecastDay.temp.max;
+      celsiusForecastMin = forecastDay.temp.min;
+      fahrenheitForecastMax = forecastDay.temp.max;
+      fahrenheitForecastMin = forecastDay.temp.min;
     }
     })
       forecastHTML = forecastHTML + `</div>`;
       forecastElement.innerHTML = forecastHTML;
+
 
   let foreCastIcons = document.querySelectorAll('.forecast-icon');
 
@@ -107,30 +112,6 @@ let days = [
 
   }
 
-
-
-
- 
-  /*
-        
-  let forecastIcon = document.querySelector(".forecast-icon");
-  if (forecastIcon.innerHTML.includes("clouds")) {
-      forecastIcon.innerHTML = "⛅️";
-    } else if (forecastIcon.innerHTML.includes("rain")) {
-        forecastIcon.innerHTML ="🌧";
-      } else if (forecastIcon.innerHTML.includes("thunderstorm")) {
-        forecastIcon.innerHTML ="⛈";
-      } else if (forecastIcon.innerHTML.includes("drizzle")) {
-        forecastIcon.innerHTML ="🌦";
-      } else if (forecastIcon.innerHTML.includes("snow")) {
-        forecastIcon.innerHTML ="❄️";
-      } else if (forecastIcon.innerHTML.includes("haze" || "smoke")) {
-        forecastIcon.innerHTML ="🌫";
-      } else {
-        forecastIcon.innerHTML ="☀️";
-      } */
-
-
   function getForecast(coordinates) {
     let apiKey = "dc249be89a0015c3980887c32be65599";
     let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=imperial&appid=${apiKey}`;
@@ -144,6 +125,11 @@ let days = [
   let celsiusTemperature = null;
   let fahrenheitTemperature = null;
   let feelsLikeTemperature = null;
+  let celsiusForecastMax = null;
+  let celsiusForecastMin = null;
+  let fahrenheitForecastMax = null;
+  let fahrenheitForecastMin = null;
+
 
   //Search Temp
   function getTemp(response) {
@@ -172,6 +158,7 @@ let days = [
     description.innerHTML = response.data.weather[0].description;
 
     let weatherIcon = document.querySelector("#icon");
+    
     
     if (response.data.weather[0].description.includes("clouds")) {
       weatherIcon.innerHTML = "⛅️";
@@ -230,34 +217,3 @@ let days = [
   let buttonCurrent = document.querySelector("#current");
   buttonCurrent.addEventListener("click", current);
   
-  //Tempeature F and C change
-
-  function changeToC(event) {
-    event.preventDefault();
-    let degrees = document.querySelector("#degrees");
-    degrees.innerHTML = Math.round((celsiusTemperature - 32) * (5 / 9));
-    fahrenheitLink.classList.remove("active");
-    celsiusLink.classList.add("active");
-  
-    //feels like
-    let feelsLike = document.querySelector("#feels-like");
-    feelsLike.innerHTML = Math.round((feelsLikeTemperature - 32) * (5 / 9));
-  }
-  
-  celsiusLink.addEventListener("click", changeToC);
-  
-  function changeToF(event) {
-    event.preventDefault();
-  
-    let degrees = document.querySelector("#degrees");
-    degrees.innerHTML = Math.round(fahrenheitTemperature);
-  
-   //feels like
-   let feelsLike = document.querySelector("#feels-like");
-   feelsLike.innerHTML = Math.round(feelsLikeTemperature);
-  
-    fahrenheitLink.classList.add("active");
-    celsiusLink.classList.remove("active");
-  }
-  
-  fahrenheitLink.addEventListener("click", changeToF);   
