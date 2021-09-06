@@ -64,8 +64,6 @@ let days = [
     let newDegreeTemp = document.querySelector("#degrees");
     newDegreeTemp.innerHTML = `${currentTemp}`;
 
-    console.log(response);
-
     celsiusTemperature = response.data.main.temp;
     fahrenheitTemperature = response.data.main.temp;
     feelsLikeTemperature = response.data.main.feels_like;
