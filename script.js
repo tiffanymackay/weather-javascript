@@ -46,34 +46,90 @@ let days = [
   let h2 = document.querySelector("h2");
   h2.innerHTML = `${theDate}`;
 
+  
+
+  //day format for forecast 
+  function formatDay(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] 
+    return days[day];
+  }
+
   //forecast 
   function displayForecast(response) {
     console.log(response.data.daily);
+    let forecast = response.data.daily;
     let forecastElement = document.querySelector("#forecast");
+
 
     let forecastHTML = `<div class="row">`;
 
-    let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
-
-    days.forEach(function (day) {
+    forecast.forEach(function (forecastDay, index) {
+      if (index < 5) {          
       forecastHTML = forecastHTML + 
       `<div class="day">
           <div class="forecast-date">  
-            ${day}
+            ${formatDay(forecastDay.dt)}
           </div>
           <div class="forecast-icon">
-            ☀️
+            ${forecastDay.weather[0].description}
           </div>
             <div class="forecast-temperature">
-              <span class="high-temp">81</span><span>˚</span>/ <span class="low-temp">61</span><span>˚</span>
+              <span class="high-temp">${Math.round(forecastDay.temp.max)}</span><span>˚</span>/ <span class="low-temp">${Math.round(forecastDay.temp.min)}</span><span>˚</span>
             </div>
         </div>
       `;
+    }
     })
       forecastHTML = forecastHTML + `</div>`;
       forecastElement.innerHTML = forecastHTML;
 
+  let foreCastIcons = document.querySelectorAll('.forecast-icon');
+
+  foreCastIcons.forEach(function(i) {
+    if (i.innerHTML.includes("clouds")) {
+      i.innerHTML = "⛅️";
+    } else if (i.innerHTML.includes("rain")) {
+        i.innerHTML ="🌧";
+      } else if (i.innerHTML.includes("thunderstorm")) {
+        i.innerHTML ="⛈";
+      } else if (i.innerHTML.includes("drizzle")) {
+        i.innerHTML ="🌦";
+      } else if (i.innerHTML.includes("snow")) {
+        i.innerHTML ="❄️";
+      } else if (i.innerHTML.includes("haze" || "smoke")) {
+        i.innerHTML ="🌫";
+      } else {
+        i.innerHTML ="☀️";
+      } 
+  })
+
   }
+
+
+
+
+ 
+  /*
+        
+  let forecastIcon = document.querySelector(".forecast-icon");
+  if (forecastIcon.innerHTML.includes("clouds")) {
+      forecastIcon.innerHTML = "⛅️";
+    } else if (forecastIcon.innerHTML.includes("rain")) {
+        forecastIcon.innerHTML ="🌧";
+      } else if (forecastIcon.innerHTML.includes("thunderstorm")) {
+        forecastIcon.innerHTML ="⛈";
+      } else if (forecastIcon.innerHTML.includes("drizzle")) {
+        forecastIcon.innerHTML ="🌦";
+      } else if (forecastIcon.innerHTML.includes("snow")) {
+        forecastIcon.innerHTML ="❄️";
+      } else if (forecastIcon.innerHTML.includes("haze" || "smoke")) {
+        forecastIcon.innerHTML ="🌫";
+      } else {
+        forecastIcon.innerHTML ="☀️";
+      } */
+
 
   function getForecast(coordinates) {
     let apiKey = "dc249be89a0015c3980887c32be65599";
@@ -114,19 +170,20 @@ let days = [
     //sky description
     let description = document.querySelector("#description");
     description.innerHTML = response.data.weather[0].description;
+
     let weatherIcon = document.querySelector("#icon");
     
-    if (response.data.weather[0].description.includes("clouds") === true) {
+    if (response.data.weather[0].description.includes("clouds")) {
       weatherIcon.innerHTML = "⛅️";
-    } else if (response.data.weather[0].description.includes("rain") === true) {
+    } else if (response.data.weather[0].description.includes("rain")) {
         weatherIcon.innerHTML ="🌧";
-      } else if (response.data.weather[0].description.includes("thunderstorm") === true) {
+      } else if (response.data.weather[0].description.includes("thunderstorm")) {
         weatherIcon.innerHTML ="⛈";
-      } else if (response.data.weather[0].description.includes("drizzle") === true) {
+      } else if (response.data.weather[0].description.includes("drizzle")) {
         weatherIcon.innerHTML ="🌦";
-      } else if (response.data.weather[0].description.includes("snow") === true) {
+      } else if (response.data.weather[0].description.includes("snow")) {
         weatherIcon.innerHTML ="❄️";
-      } else if (response.data.weather[0].description.includes("haze" || "smoke") === true) {
+      } else if (response.data.weather[0].description.includes("haze" || "smoke")) {
         weatherIcon.innerHTML ="🌫";
       } else {
         weatherIcon.innerHTML ="☀️";
