@@ -7,7 +7,7 @@ body {
   section {
     max-width: 600px;
     margin: 10px auto;
-    padding: 40px;
+    padding: 30px 40px 20px 40px;
     border-radius: 16px;
     background-color: #fff;
     box-shadow: 2px 2px 1px rgb(0 0 0 / 50%);
@@ -98,30 +98,22 @@ body {
   span {
     color: steelblue;
   }
+  
   .row {
     display: grid;
     font-size: 1rem;
     grid-template-columns: repeat(5, 1fr);
     column-gap: 10px;
-    row-gap: 1em;
-  }
-  #days {
-    font-weight: bolder;
-  }
-  .col {
+    line-height: 2.2rem;
     text-align: center;
   }
-  .align-items-start {
-    font-size: 18px;
+  .forecast-date {
     font-weight: bolder;
   }
-  .align-items-center {
-    font-size: 24px;
+  .forecast-icon {
+    font-size: 2rem;
   }
-  .align-items-end {
-    font-size: 14px;
-    font-weight: lighter;
-  }
+
   footer {
     max-width: 600px;
     margin: 0px auto;

@@ -45,6 +45,36 @@ let days = [
   
   let h2 = document.querySelector("h2");
   h2.innerHTML = `${theDate}`;
+
+  //forecast
+
+  function displayForecast() {
+    let forecastElement = document.querySelector("#forecast");
+
+    let forecastHTML = `<div id="days" class="row">`;
+
+
+
+    let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+    days.forEach(function (day) {
+      forecastHTML = forecastHTML + 
+      `<div class="day">
+          <div class="forecast-date">  
+            ${day}
+          </div>
+          <div class="forecast-icon">
+            ☀️
+          </div>
+            <div class="forecast-temperature">
+              <span class="high-temp">81</span><span>˚</span>/ <span class="low-temp">61</span><span>˚</span>
+            </div>
+        </div>
+      `;
+    })
+      forecastHTML = forecastHTML + `</div>`;
+      forecastElement.innerHTML = forecastHTML;
+
+  }
   
   //global temp
   let fahrenheitLink = document.querySelector("#fahrenheit");
@@ -63,6 +93,8 @@ let days = [
     let currentTemp = Math.round(response.data.main.temp);
     let newDegreeTemp = document.querySelector("#degrees");
     newDegreeTemp.innerHTML = `${currentTemp}`;
+
+
 
     celsiusTemperature = response.data.main.temp;
     fahrenheitTemperature = response.data.main.temp;
@@ -166,4 +198,5 @@ let days = [
     celsiusLink.classList.remove("active");
   }
   
-  fahrenheitLink.addEventListener("click", changeToF);
+  fahrenheitLink.addEventListener("click", changeToF);   
+   displayForecast();
