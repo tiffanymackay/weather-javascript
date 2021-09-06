@@ -95,6 +95,9 @@ body {
   .active {
     font-weight: 700;
   }
+  span {
+    color: steelblue;
+  }
   .row {
     display: grid;
     font-size: 1rem;

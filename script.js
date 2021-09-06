@@ -49,7 +49,6 @@ let days = [
   //global temp
   let fahrenheitLink = document.querySelector("#fahrenheit");
   let celsiusLink = document.querySelector("#celsius");
-  console.log(celsiusLink);
 
   let celsiusTemperature = null;
   let fahrenheitTemperature = null;
@@ -65,6 +64,8 @@ let days = [
     let newDegreeTemp = document.querySelector("#degrees");
     newDegreeTemp.innerHTML = `${currentTemp}`;
 
+    console.log(response);
+
     celsiusTemperature = response.data.main.temp;
     fahrenheitTemperature = response.data.main.temp;
     feelsLikeTemperature = response.data.main.feels_like;
@@ -72,6 +73,10 @@ let days = [
     //feels like
     let feelsLike = document.querySelector("#feels-like");
     feelsLike.innerHTML = Math.round(response.data.main.feels_like);
+
+    //wind
+    let windSpeed = document.querySelector("#wind");
+    windSpeed.innerHTML = Math.round(response.data.wind.speed);
 
     //sky description
     let description = document.querySelector("#description");
