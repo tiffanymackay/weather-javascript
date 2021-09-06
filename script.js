@@ -46,6 +46,14 @@ let days = [
   let h2 = document.querySelector("h2");
   h2.innerHTML = `${theDate}`;
   
+  //global temp
+  let fahrenheitLink = document.querySelector("#fahrenheit");
+  let celsiusLink = document.querySelector("#celsius");
+  console.log(celsiusLink);
+
+  let celsiusTemperature = null;
+  let fahrenheitTemperature = null;
+  let feelsLikeTemperature = null;
 
   //Search Temp
   function getTemp(response) {
@@ -56,9 +64,15 @@ let days = [
     let currentTemp = Math.round(response.data.main.temp);
     let newDegreeTemp = document.querySelector("#degrees");
     newDegreeTemp.innerHTML = `${currentTemp}`;
+
+    celsiusTemperature = response.data.main.temp;
+    fahrenheitTemperature = response.data.main.temp;
+    feelsLikeTemperature = response.data.main.feels_like;
+
     //feels like
     let feelsLike = document.querySelector("#feels-like");
     feelsLike.innerHTML = Math.round(response.data.main.feels_like);
+
     //sky description
     let description = document.querySelector("#description");
     description.innerHTML = response.data.weather[0].description;
@@ -84,7 +98,6 @@ let days = [
     let humidity = document.querySelector("#humidity");
     humidity.innerHTML = response.data.main.humidity;
   }
-  /* navigator.geolocation.getCurrentPosition(showPosition); */
   axios
     .get(
       "https://api.openweathermap.org/data/2.5/weather?q=New+York&units=imperial&appid=dc249be89a0015c3980887c32be65599"
@@ -121,49 +134,33 @@ let days = [
   buttonCurrent.addEventListener("click", current);
   
   //Tempeature F and C change
-  let fahrenheitLink = document.querySelector("#fahrenheit");
-  let celciusLink = document.querySelector("#celcius");
-  
+
   function changeToC(event) {
     event.preventDefault();
     let degrees = document.querySelector("#degrees");
-    degrees.innerHTML = Math.round((degrees.innerHTML - 32) * (5 / 9));
+    degrees.innerHTML = Math.round((celsiusTemperature - 32) * (5 / 9));
     fahrenheitLink.classList.remove("active");
-    celciusLink.classList.add("active");
+    celsiusLink.classList.add("active");
   
     //feels like
     let feelsLike = document.querySelector("#feels-like");
-    feelsLike.innerHTML = Math.round((feelsLike.innerHTML - 32) * (5 / 9));
+    feelsLike.innerHTML = Math.round((feelsLikeTemperature - 32) * (5 / 9));
   }
   
-  celciusLink.addEventListener("click", changeToC);
+  celsiusLink.addEventListener("click", changeToC);
   
   function changeToF(event) {
     event.preventDefault();
   
     let degrees = document.querySelector("#degrees");
-    degrees.innerHTML = Math.round(degrees.innerHTML * (9 / 5) + 32);
+    degrees.innerHTML = Math.round(fahrenheitTemperature);
   
-    //feels like
-    let feelsLike = document.querySelector("#feels-like");
-    feelsLike.innerHTML = Math.round(feelsLike.innerHTML * (9 / 5) + 32);
+   //feels like
+   let feelsLike = document.querySelector("#feels-like");
+   feelsLike.innerHTML = Math.round(feelsLikeTemperature);
   
     fahrenheitLink.classList.add("active");
-    celciusLink.classList.remove("active");
+    celsiusLink.classList.remove("active");
   }
   
   fahrenheitLink.addEventListener("click", changeToF);
-  
-
-    //weather icons
-/*   let weatherIcon = [
-    "☀️",
-    "🌤",
-    "⛅️",
-    "☁️",
-    "🌧",
-    "🌦",
-    "⛈"
-    "❄️"
-    "🌫"
-  ]; */
