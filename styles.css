@@ -1,13 +1,11 @@
 html {
   height: 100%;
   background: linear-gradient(111.5deg, rgb(228, 247, 255) 21.9%, rgb(255, 216, 194) 92.2%);
-    
 }
 body {
-
   margin: 50px;
   padding: 10px;
-    font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   }
   section {
     max-width: 45%;

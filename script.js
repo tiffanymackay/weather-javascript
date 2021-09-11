@@ -136,6 +136,7 @@ let days = [
     let selectedCity = document.querySelector("#city-input");
     let searchInput = response.data.name;
     selectedCity.innerHTML = searchInput;
+
     //main temperature change
     let currentTemp = Math.round(response.data.main.temp);
     let newDegreeTemp = document.querySelector("#degrees");
@@ -159,7 +160,6 @@ let days = [
 
     let weatherIcon = document.querySelector("#icon");
     
-    
     if (response.data.weather[0].description.includes("clouds")) {
       weatherIcon.innerHTML = "⛅️";
     } else if (response.data.weather[0].description.includes("rain")) {
@@ -181,12 +181,13 @@ let days = [
     humidity.innerHTML = response.data.main.humidity;
 
     getForecast(response.data.coord);
-  }
-  axios
-    .get(
-      "https://api.openweathermap.org/data/2.5/weather?q=New+York&units=imperial&appid=dc249be89a0015c3980887c32be65599"
-    )
-    .then(getTemp);
+    }
+    
+    axios
+      .get(
+        "https://api.openweathermap.org/data/2.5/weather?q=New+York&units=imperial&appid=dc249be89a0015c3980887c32be65599"
+      )
+      .then(getTemp);
   
   //Search Button
   function search(event) {
