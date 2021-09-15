@@ -132,6 +132,16 @@ body {
       margin: 10px auto;
     }
     section {
+      max-width: 65%;
+
+    }
+
+  }
+  @media (max-width: 800px) {
+    body {
+      margin: 10px auto;
+    }
+    section {
       max-width: 80%;
 
     }
